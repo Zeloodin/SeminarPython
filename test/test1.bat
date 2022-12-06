@@ -1,0 +1,1 @@
+python "D:\PycharmProjects\SeminarPython\test\test1.py"
