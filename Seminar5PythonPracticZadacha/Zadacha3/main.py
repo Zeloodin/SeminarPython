@@ -9,20 +9,6 @@
 # Ввёл: stroka = "3a4b2c3b"
 # Вывод: stroka = "aaabbbbccbbb"
 
-# import string
-# >>> string.ascii_uppercase
-# 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-# >>> string.ascii_lowercase
-# 'abcdefghijklmnopqrstuvwxyz'
-# >>> string.ascii_letters
-# 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-
-# ord('ö') -> 246
-# chr(65) - > A
-
-
-
-
 def EncodeOrdChr(text):
     result = ""
     samplerChr = "abcdefghijklmopqrstuvwxyzABCDEFGHIJKLMOPQRSTUVWXYZ"
@@ -44,11 +30,6 @@ def DecodeOrdChr(text):
         result += chr(int(number))
     # print(result)
     return result
-
-# print("EncodeOrdChr: "+EncodeOrdChr(r"GeeksforGeeks")) # зашифровать, encrypt, кодировать, encode
-# print("DecodeOrdChr: "+DecodeOrdChr(r"71a\n101b\n101c\n107d\n115e\n102f\n111g\n114h\n71i\n101j\n101k\n107l\n115m\n")) # расшифровать, decrypt, декодировать, decode
-
-
 
 # https://tonais.ru/osnovy/kodirovanie-dlin-seriy-rle-python
 
@@ -136,19 +117,3 @@ fOutDecode.close()
 fOutEncode.close()
 fOutDecEncode.close()
 fOutEncDecode.close()
-
-
-
-
-# import urllib.parse
-#
-# fText = "Александр Пушкин начал писать свои первые произведения уже в семь лет. В годы учебы в Лицее он прославился, когда прочитал свое стихотворение Гавриилу Державину. Пушкин первым из русских писателей начал зарабатывать литературным трудом. Он создавал не только лирические стихи, но и сказки, историческую прозу и произведения в поддержку революционеров - за вольнодумство поэта даже отправляли в ссылки."
-# print(fText)
-# query = fText
-# result1 = urllib.parse.quote(query)
-# final1result = urllib.parse.unquote_plus(result1)
-#
-# result2 = urllib.parse.quote_plus(query)
-# final2result =urllib.parse.unquote_plus(result2)
-#
-# print(result1,final1result,result2,final2result,sep="\n")
