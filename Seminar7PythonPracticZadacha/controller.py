@@ -1,6 +1,7 @@
 from console_func import input_selected_number
 from list_func import *
 from console_func import read_list,read_array
+from list_func import append_user
 
 def run_controller():
     print("")
@@ -38,10 +39,21 @@ def run_controller_01(mode_num,data_phonebook):
             print("Назад в меню")
             return data_phonebook,selected_number
 
-def run_controller_02(mode_num):
+def run_controller_02(mode_num,data_phonebook):
     print("")
     print("1 - Добавить человека в телефонный справочник")
-    print("")
+    print("2 - Вернуться в меню")
+    while(True):
+        selected_number = input_selected_number(mode_num)
+        if selected_number == 1:
+            print()
+            print("Добавить в телефонный справочник")
+            data_phonebook = append_user(data_phonebook)
+            return data_phonebook,selected_number
+        elif selected_number == 2:
+            print()
+            print("Назад в меню")
+            return data_phonebook,selected_number
 
 def run_controller_03(mode_num):
     print("1 - ")

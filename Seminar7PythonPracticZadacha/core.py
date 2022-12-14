@@ -10,9 +10,9 @@ from logger import *
 from math_func import *
 
 def run_core():
-    global data_phonebook, selected_number
+    exit = False
     data_phonebook = []
-    while(data_phonebook != None):
+    while(exit != True):
         run_controller()
         mode_num = input_prime_mode()
 
@@ -48,7 +48,7 @@ def run_core():
 
             case 9: # 9 - выход из программы
                 # data_phonebook,selected_number = run_controller_09(mode_num,data_phonebook)
-                data_phonebook = None
+                exit = True
                 pass
 
 

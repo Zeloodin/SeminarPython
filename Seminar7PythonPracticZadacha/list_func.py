@@ -12,9 +12,9 @@ def get_dict_values(dict):
 def get_dict_items(dict):
     return [n for n in dict.items()]
 
-def append_user():
+def append_user(data_users = None):
+    user_list = gen_list()
     i = 0
-    user_list = gen_list
     all_list = get_dict_items(dict_us)
     while(i < cells_per_user):
         try:
@@ -25,7 +25,12 @@ def append_user():
                 user_list[i] = input_text
                 i += 1
         except (TypeError,ValueError): pass
-    return user_list
+    if data_users == None:
+        return user_list
+    else:
+        data_users.append(user_list)
+        return data_users
+
 
 def merge_list_to_dict(list1):
     result = dict(zip(list_user_kir,list1))
