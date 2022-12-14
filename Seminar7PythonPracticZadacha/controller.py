@@ -1,6 +1,6 @@
 from console_func import input_selected_number
 from list_func import *
-from console_func import read_list
+from console_func import read_list,read_array
 
 def run_controller():
     print("")
@@ -17,7 +17,7 @@ def run_controller():
 
 def run_controller_00(mode_num,data_phonebook):
     print("")
-    print(read_list(list1, sep="  ||  ", end="\n", show=False))
+    print(read_array(data_phonebook, sep="  ||  ",show=False ,get=True))
     print("Нажмите на [Enter] чтобы вернуться в меню")
     selected_number = input_selected_number(mode_num)
     return data_phonebook,selected_number
