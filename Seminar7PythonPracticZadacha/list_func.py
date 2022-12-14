@@ -20,7 +20,18 @@ def append_user(data_users = None):
         try:
             if i < cells_per_user:
                 print(all_list[i][1]+": ",end="")
-            input_text = str(input())
+            if all_list[i][1] == "id":
+                if data_users == None:
+                    input_text = "0"
+                    print(input_text)
+                else:
+                    try:
+                        input_text = str(data_users[len(data_users)][0]+1)
+                    except IndexError:
+                        input_text = str(len(data_users))
+                    print(input_text)
+            else:
+                input_text = str(input())
             if not input_text  in ["",None] and filter_text(input_text):
                 user_list[i] = input_text
                 i += 1

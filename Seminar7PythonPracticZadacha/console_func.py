@@ -15,10 +15,30 @@ def input_prime_mode():
 
 def input_selected_number(mode_num=0):
     while (True and mode_num != 0):
-        print("Введите число:", end=" ")
-        selected_number = str(input())
+        if mode_num == 1: # 1 - создать новый телефонный справочник
+            print("")
+            print("1 - Создать новый телефонный справочник")
+            print("2 - Вернуться в меню")
+            selected_number = str(input())
+        elif mode_num == 2: # 2 - добавить в телефонный справочник
+            print("")
+            print("1 - Добавить человека в телефонный справочник")
+            print("2 - Вернуться в меню")
+            print("Введите число:", end=" ")
+            selected_number = str(input())
+        elif mode_num == 3: # 3 - заменить в справочнике
+            print("")
+            print("1 - Добавить человека в телефонный справочник")
+            print("2 - Вернуться в меню")
+            print("Введите число:", end=" ")
+            selected_number = str(input())
+        else:
+            print("Введите число:", end=" ")
+            selected_number = str(input())
+
         if selected_mode(selected_number,mode_num):
             break
+
     else:
         input()
         selected_number = str("0")
