@@ -2,6 +2,7 @@ from generator_list import gen_list
 from constant import cells_per_user, dict_us, list_user, list_user_kir
 from console_func import inp_str, out_str
 from string_func import filter_text
+from csv_func import save_csvfile, read_csvfile, get_csvfile
 
 def get_dict_keys(dict):
     return [n for n in dict.keys()]
@@ -12,7 +13,7 @@ def get_dict_values(dict):
 def get_dict_items(dict):
     return [n for n in dict.items()]
 
-def append_user(data_users = None):
+def append_user(data_users = None, id = None):
     user_list = gen_list()
     i = 0
     all_list = get_dict_items(dict_us)
@@ -22,13 +23,19 @@ def append_user(data_users = None):
                 print(all_list[i][1]+": ",end="")
             if all_list[i][1] == "id":
                 if data_users == None:
-                    input_text = "0"
+                    if id == None:
+                        input_text = "0"
+                    else:
+                        input_text = str(id)
                     print(input_text)
                 else:
-                    try:
-                        input_text = str(int(data_users[-1][0])+1)
-                    except IndexError:
-                        input_text = str(len(data_users))
+                    if id == None:
+                        try:
+                            input_text = str(int(data_users[-1][0])+1)
+                        except IndexError:
+                            input_text = str(len(data_users))
+                    else:
+                        input_text = str(id)
                     print(input_text)
             else:
                 input_text = str(input())
@@ -72,10 +79,34 @@ def extend_list_to_data(data,list1):
     data.extend(list1)
     return data
 
+def find_check_index_to_data(data,ind):
+    ind = int(ind)
+    for i in range(len(data)):
+        if str(data[i][0]) == str(ind):
+            return True, i
+    return False, -1
+
+def replace_index_to_data(data,ind):
+    ind = int(ind)
+    is_check, ind_checked = find_check_index_to_data(data,ind)
+    if is_check:
+        print("   ".join(data[ind_checked]))
+        add_user = append_user(id = ind)
+        data[ind_checked] = add_user
+        return data
+    else:
+        print(f"Индекс {ind}, не существует в таблице.")
+
 
 
 if __name__ == '__main__':
-    result = append_user()
-    list1 = [['Фамилия','Имя','Телефон','Адрес','Описание']]
+    csv_file = get_csvfile()
+    bool1 = find_check_index_to_data(csv_file,1)
+    replace_index_to_data(csv_file,1)
+    print(csv_file)
 
-    print(append_list_to_data(list1, result))
+    # result = append_user()
+    # list1 = [['Фамилия','Имя','Телефон','Адрес','Описание']]
+    #
+    # print(append_list_to_data(list1, result))
+    pass

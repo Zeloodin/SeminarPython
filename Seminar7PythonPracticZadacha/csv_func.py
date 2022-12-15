@@ -1,16 +1,11 @@
 import csv
 
 def save_csvfile(csv_data_array,name = "phonebook.csv",delimiter=';', quotechar='|', newline=''):
-    print(csv_data_array)
     with open(name, mode='w', newline=newline) as employee_file:
         employee_writer = csv.writer(employee_file, delimiter=delimiter, quotechar=quotechar, quoting=csv.QUOTE_MINIMAL)
         for row in csv_data_array:
             employee_writer.writerow(row)
 
-
-
-
-import csv
 def read_csvfile(name = "phonebook.csv",sep =";",delimiter=';', quotechar='|',newline=""):
     with open(name, newline=newline) as csvfile:
         spamreader = csv.reader(csvfile, delimiter=delimiter, quotechar=quotechar)
@@ -28,5 +23,4 @@ def get_csvfile(name = "phonebook.csv",sep =";",delimiter=';', quotechar='|'):
 
 if __name__ == '__main__':
    csv_file = get_csvfile()
-   print(csv_file)
    save_csvfile(csv_file)
