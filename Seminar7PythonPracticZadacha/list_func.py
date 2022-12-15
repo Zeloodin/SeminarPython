@@ -26,7 +26,7 @@ def append_user(data_users = None):
                     print(input_text)
                 else:
                     try:
-                        input_text = str(data_users[len(data_users)][0]+1)
+                        input_text = str(int(data_users[-1][0])+1)
                     except IndexError:
                         input_text = str(len(data_users))
                     print(input_text)

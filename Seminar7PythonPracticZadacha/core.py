@@ -1,4 +1,4 @@
-from output_func import *
+from csv_func import *
 from string_func import *
 from console_func import *
 from constant import *
@@ -12,6 +12,7 @@ from math_func import *
 def run_core():
     exit = False
     data_phonebook = []
+    data_phonebook = get_csvfile()
     while(exit != True):
         run_controller()
         mode_num = input_prime_mode()
