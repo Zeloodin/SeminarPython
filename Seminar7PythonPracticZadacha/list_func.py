@@ -108,6 +108,29 @@ def find_to_data(data,mode,str_search):
         else:
             pass
 
+def delete_index_to_data(data,ind = None):
+    while(True):
+        if ind == None:
+            ind = int(input_int("Введите индекс: "))
+        else:
+            ind = int(ind)
+
+        is_check, ind_checked = find_check_index_to_data(data, ind)
+        if is_check:
+            print("   ".join(data[ind_checked]))
+            print("")
+            is_yes = False
+            print("Удалить?\n1 - Да\n2 - Нет")
+            input_delete = str(input())
+            if input_delete == str(1):
+                print()
+                data.pop(ind_checked)
+
+            return data
+        else:
+            print(f"Индекс {ind}, не существует в таблице.")
+            break
+
 
 def replace_index_to_data(data,ind = None):
     if ind == None:

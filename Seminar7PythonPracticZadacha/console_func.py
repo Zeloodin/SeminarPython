@@ -30,11 +30,24 @@ def input_str(text="", sep=" ", end=" "):
     return input_string
 
 def input_str_split(split_text, text="", sep=" ", end=" "):
+    split_only = False
+    if len(split_text) <= 1:
+        split_only = True
     result_split = list()
-    for i in range(len(split_text)):
+    if not split_only:
+        for i in range(len(split_text)):
+            print(text, sep="", end="\n")
+            while(True):
+                print(split_text[i],sep=sep,end=end)
+                input_string = str(input())
+                if input_string not in [";"]:
+                    break
+            result_split.append(input_string)
+    elif split_only:
         print(text, sep="", end="\n")
-        while(True):
-            print(split_text[i],sep=sep,end=end)
+        split_text = "".join(split_text)
+        while (True):
+            print(split_text, sep=sep, end=end)
             input_string = str(input())
             if input_string not in [";"]:
                 break
@@ -60,13 +73,27 @@ def input_selected_number(mode_num=0):
             print("2 - Найти по фамилии")
             print("3 - Найти по имени")
             print("4 - Найти по фамилии и имени")
-            print("5 - Назад в меню")
+            print("5 - Вернуться в меню")
             print("Введите число:", end=" ")
             selected_number = str(input())
         elif mode_num == 4: # 4 - заменить в справочнике
             print("")
             print("1 - Заменить по индексу")
             print("2 - Вернуться в меню")
+            print("Введите число:", end=" ")
+            selected_number = str(input())
+        elif mode_num == 5: # 5 - удалить из телефонного справочника
+            print("")
+            print("1 - Удалить по индексу")
+            print("2 - Вернуться в меню")
+            print("Введите число:", end=" ")
+            selected_number = str(input())
+        elif mode_num == 6: # 6 - импорт справочника
+            print("")
+            print("По умолчанию импортирует из файла phonebook.csv")
+            print("1 - Импортировать")
+            print("2 - Импортировать как...")
+            print("3 - Вернуться в меню")
             print("Введите число:", end=" ")
             selected_number = str(input())
         else:

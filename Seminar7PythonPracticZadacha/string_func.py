@@ -30,5 +30,8 @@ def selected_mode(n,mode):
     elif n.isdigit() and n in ["1","2"] and mode == 5: # 5 - удалить из телефонного справочника
         return True
 
+    elif n.isdigit() and n in ["1","2","3"] and mode == 6: # 6 - импорт справочника
+        return True
+
     else:
         return False

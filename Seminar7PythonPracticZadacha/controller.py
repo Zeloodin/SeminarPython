@@ -87,7 +87,7 @@ def run_controller_03(mode_num, data_phonebook): # 3 - найти в справ�
 
         elif selected_number == 5: # 5 - Назад в меню
             print()
-            print("Назад в меню")
+            print("Вернуться в меню")
             return data_phonebook, selected_number
 
 def run_controller_04(mode_num, data_phonebook): # 4 - заменить в справочнике
@@ -104,16 +104,54 @@ def run_controller_04(mode_num, data_phonebook): # 4 - заменить в сп�
 
         elif selected_number == 2:
             print()
-            print("Назад в меню")
+            print("Вернуться в меню")
             return data_phonebook, selected_number
 
 def run_controller_05(mode_num, data_phonebook): # 5 - удалить из телефонного справочника
-    print("1 - ")
+    # print("")
+    # print("1 - Удалить по индексу")
+    # print("2 - Назад в меню")
+    print(read_array(data_phonebook, sep="  ||  ", show=False, get=True))
+    while (True):
+        selected_number = input_selected_number(mode_num)
+        if selected_number == 1:
+            print()
+            print("Удалить по индексу")
+            delete_index_to_data(data_phonebook)
 
+        elif selected_number == 2:
+            print()
+            print("Вернуться в меню")
+            return data_phonebook, selected_number
 
 
 def run_controller_06(mode_num, data_phonebook): # 6 - импорт справочника
-    print("1 - ")
+    # print("")
+    # print("По умолчанию импортирует из файла phonebook.csv")
+    # print("1 - Импортировать")
+    # print("2 - Импортировать как...")
+    # print("3 - Вернуться в меню")
+    print(read_array(data_phonebook, sep="  ||  ", show=False, get=True))
+    while (True):
+        selected_number = input_selected_number(mode_num)
+        if selected_number == 1:
+            print()
+            print("Импортировать из phonebook.csv")
+            get_data = get_csvfile()
+            data_phonebook = get_data
+
+        elif selected_number == 2:
+            print()
+            print("Импортировать как...")
+            string_print = ["Введите название файла для импорта:"]
+            name = "".join(input_str_split(string_print))
+            get_data = get_csvfile(name)
+            data_phonebook = get_data
+
+        elif selected_number == 3:
+            print()
+            print("Вернуться в меню")
+            return data_phonebook, selected_number
 
 def run_controller_07(mode_num, data_phonebook): # 7 - экспорт справочника в txt
     print("1 - ")
