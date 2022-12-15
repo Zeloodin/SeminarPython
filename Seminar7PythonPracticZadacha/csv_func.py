@@ -1,16 +1,18 @@
 import csv
 
-def save_csvfile(csv_data_array,name = "phonebook.csv",delimiter=' ', quotechar=';'):
-    with open(name, mode='w') as employee_file:
+def save_csvfile(csv_data_array,name = "phonebook.csv",delimiter=';', quotechar='|', newline=''):
+    print(csv_data_array)
+    with open(name, mode='w', newline=newline) as employee_file:
         employee_writer = csv.writer(employee_file, delimiter=delimiter, quotechar=quotechar, quoting=csv.QUOTE_MINIMAL)
-        employee_writer.writerows(csv_data_array)
+        for row in csv_data_array:
+            employee_writer.writerow(row)
 
 
 
 
 import csv
-def read_csvfile(name = "phonebook.csv",sep =";",delimiter=';', quotechar='|'):
-    with open(name, newline='') as csvfile:
+def read_csvfile(name = "phonebook.csv",sep =";",delimiter=';', quotechar='|',newline=""):
+    with open(name, newline=newline) as csvfile:
         spamreader = csv.reader(csvfile, delimiter=delimiter, quotechar=quotechar)
         for row in spamreader:
             print(sep.join(row))
