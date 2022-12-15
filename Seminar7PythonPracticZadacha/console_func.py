@@ -13,6 +13,34 @@ def input_prime_mode():
             break
     return int(input_mode)
 
+def input_int(text="",sep=" ",end=" "):
+    while(True):
+        print(text,sep=sep, end=end)
+        input_string = str(input())
+        if input_string.isdigit():
+            break
+    return int(input_string)
+
+def input_str(text="", sep=" ", end=" "):
+    print(text, sep=sep, end=end)
+    while(True):
+        input_string = str(input())
+        if input_string not in [";"]:
+            break
+    return input_string
+
+def input_str_split(split_text, text="", sep=" ", end=" "):
+    result_split = list()
+    for i in range(len(split_text)):
+        print(text, sep="", end="\n")
+        while(True):
+            print(split_text[i],sep=sep,end=end)
+            input_string = str(input())
+            if input_string not in [";"]:
+                break
+        result_split.append(input_string)
+    return result_split
+
 def input_selected_number(mode_num=0):
     while (True and mode_num != 0):
         if mode_num == 1: # 1 - создать новый телефонный справочник
@@ -24,6 +52,15 @@ def input_selected_number(mode_num=0):
             print("")
             print("1 - Добавить человека в телефонный справочник")
             print("2 - Вернуться в меню")
+            print("Введите число:", end=" ")
+            selected_number = str(input())
+        elif mode_num == 3: # 3 - найти в справочнике
+            print("")
+            print("1 - Найти по индексу")
+            print("2 - Найти по фамилии")
+            print("3 - Найти по имени")
+            print("4 - Найти по фамилии и имени")
+            print("5 - Назад в меню")
             print("Введите число:", end=" ")
             selected_number = str(input())
         elif mode_num == 4: # 4 - заменить в справочнике

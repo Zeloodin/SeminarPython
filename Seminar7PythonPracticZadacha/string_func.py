@@ -21,7 +21,7 @@ def selected_mode(n,mode):
     elif n.isdigit() and n in ["1","2"] and mode == 2: # 2 - добавить в телефонный справочник
         return True
 
-    elif n.isdigit() and n in ["1","2"] and mode == 3: # 3 - найти в справочнике
+    elif n.isdigit() and n in ["1","2","3","4","5"] and mode == 3: # 3 - найти в справочнике
         return True
 
     elif n.isdigit() and n in ["1","2"] and mode == 4: # 4 - заменить в справочнике

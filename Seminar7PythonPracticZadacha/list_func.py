@@ -1,6 +1,6 @@
 from generator_list import gen_list
 from constant import cells_per_user, dict_us, list_user, list_user_kir
-from console_func import inp_str, out_str
+from console_func import inp_str, out_str, input_int
 from string_func import filter_text
 from csv_func import save_csvfile, read_csvfile, get_csvfile
 
@@ -86,10 +86,38 @@ def find_check_index_to_data(data,ind):
             return True, i
     return False, -1
 
-def replace_index_to_data(data,ind):
-    ind = int(ind)
+def find_to_data(data,mode,str_search):
+    # 1 - Найти по индексу
+    # 2 - Найти по фамилии
+    # 3 - Найти по имени
+    # 4 - Найти по фамилии и имени
+
+    for i in range(len(data)):
+        if str(mode) == str(1) and str(data[i][0]) == str(str_search):
+            print(str(data[i]))
+            return data[i]
+        elif str(mode) == str(2) and str(data[i][1]).lower() == str(str_search).lower():
+            print(str(data[i]))
+            return data[i]
+        elif str(mode) == str(3) and str(data[i][2]).lower() == str(str_search).lower():
+            print(str(data[i]))
+            return data[i]
+        elif str(mode) == str(4) and str(data[i][1]).lower() == str(str_search[0]).lower() and str(data[i][2]).lower() == str(str_search[1]).lower():
+            print(str(data[i]))
+            return data[i]
+        else:
+            pass
+
+
+def replace_index_to_data(data,ind = None):
+    if ind == None:
+        ind = int(input_int("Введите индекс: "))
+    else:
+        ind = int(ind)
+
     is_check, ind_checked = find_check_index_to_data(data,ind)
     if is_check:
+
         print("   ".join(data[ind_checked]))
         add_user = append_user(id = ind)
         data[ind_checked] = add_user
