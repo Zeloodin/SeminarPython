@@ -26,7 +26,7 @@ def input_selected_number(mode_num=0):
             print("2 - Вернуться в меню")
             print("Введите число:", end=" ")
             selected_number = str(input())
-        elif mode_num == 3: # 3 - заменить в справочнике
+        elif mode_num == 4: # 4 - заменить в справочнике
             print("")
             print("1 - Заменить по индексу")
             print("2 - Вернуться в меню")

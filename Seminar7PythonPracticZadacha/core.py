@@ -29,13 +29,13 @@ def run_core():
             case 2: # 2 - добавить в телефонный справочник
                 data_phonebook, selected_number = run_controller_02(mode_num,data_phonebook)
 
-            case 3: # 3 - заменить в справочнике
+            case 3: # 3 - найти в справочнике
                 data_phonebook, selected_number = run_controller_03(mode_num,data_phonebook)
 
-            case 4: # 4 - удалить из телефонного справочника
+            case 4: # 4 - заменить в справочнике
                 data_phonebook, selected_number = run_controller_04(mode_num,data_phonebook)
 
-            case 5: # 5 - найти в справочнике
+            case 5: # 5 - удалить из телефонного справочника
                 data_phonebook, selected_number = run_controller_05(mode_num,data_phonebook)
 
             case 6: # 6 - импорт справочника
