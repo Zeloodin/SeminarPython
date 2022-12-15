@@ -33,5 +33,11 @@ def selected_mode(n,mode):
     elif n.isdigit() and n in ["1","2","3"] and mode == 6: # 6 - импорт справочника
         return True
 
+    elif n.isdigit() and n in ["1","2","3","4","5"] and mode == 7: # 7 - экспорт справочника в txt
+        return True
+
+    elif n.isdigit() and n in ["1","2","3"] and mode == 8: # 8 - экспорт справочника в csv
+        return True
+
     else:
         return False
