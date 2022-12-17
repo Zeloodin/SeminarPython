@@ -6,7 +6,6 @@ from controller import *
 from generator_list import *
 from csv_func import *
 from list_func import *
-from logger import *
 from math_func import *
 
 def run_core():

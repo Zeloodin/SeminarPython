@@ -1,5 +1,4 @@
 from string_func import prime_mode, selected_mode
-from generator_list import gen_list, gen_array
 
 inp_str = lambda out_text: str(input(out_text))
 out_str = lambda out_text,sep = " ", end = "\n": print(out_text,sep=sep,end=end)
@@ -159,20 +158,3 @@ def read_array(array1,sep=" ", end_str=" ", end_list="\n", show = True, get = Fa
             print()
     if get:
         return array_list
-
-
-if __name__ == '__main__':
-    list1 = gen_list()
-    list1[0] = "Sad"
-    list1[1] = "Mercury"
-    list1[2] = "12321-4124"
-    list1[3] = "Moscow"
-    list1[4] = "Eath"
-    # print(list1)
-    # (read_list(list1, sep="  ||  "))
-
-    list2 = ["Иванов","Иван","01020304112911","СССР","Безопасный"]
-    list3 = gen_array()
-    list3[0] = list2
-    list3.append(list1)
-    print(read_array(list3, sep="  ||  "))

@@ -1,4 +1,3 @@
-from constant import cells_per_user
 from list_func import *
 
 def get_txtfile(name = "phonebook.txt",split='\n',sep =";",end='\n', show = False, show_sep="  ||  ", show_end='\n'):
@@ -57,18 +56,3 @@ def str_to_list_data(data, split=';', sep =";", end='\n'):
         second_all.append(first)
         first = []
     return second_all
-
-
-if __name__ == '__main__':
-    from csv_func import *
-    arr1 = get_txtfile("1.csv",split=";",sep="\n",end="\n")
-
-    save_txtfile(list_to_str_data(get_csvfile()),"1222.txt")
-
-    a1 = list_to_str_data(get_csvfile())
-    print(a1)
-
-    a2 = str_to_list_data(a1)
-    print(a2)
-
-    pass

@@ -19,8 +19,3 @@ def get_csvfile(name = "phonebook.csv",sep =";",delimiter=';', quotechar='|'):
         for row in spamreader:
             array_data.append(row)
     return array_data
-
-
-if __name__ == '__main__':
-   csv_file = get_csvfile()
-   save_csvfile(csv_file)

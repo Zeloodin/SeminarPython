@@ -1,7 +1,6 @@
-from console_func import input_selected_number, read_list, read_array, input_int, input_str, input_str_split
-from list_func import *
-from csv_func import save_csvfile, read_csvfile, get_csvfile
-from list_func import append_user
+from console_func import input_selected_number, read_array, input_str, input_str_split
+from csv_func import save_csvfile, get_csvfile
+from list_func import append_user, find_to_data, replace_index_to_data, delete_index_to_data
 from txt_func import str_to_list_data, list_to_str_data, save_txtfile, get_txtfile
 
 
@@ -182,8 +181,7 @@ def run_controller_07(mode_num, data_phonebook): # 7 - экспорт/импор
         elif selected_number == 3:
             print()
             print("Импортировать из phonebook.txt")
-            get_data = str_to_list_data(get_txtfile(split="\n"))
-            print(get_data)
+            get_data = str_to_list_data(get_txtfile(split=";"),split="\n")
             data_phonebook = get_data
 
         elif selected_number == 4:
@@ -191,7 +189,7 @@ def run_controller_07(mode_num, data_phonebook): # 7 - экспорт/импор
             print("Импортировать как...")
             string_print = ["Введите название файла для импорта:"]
             name = "".join(input_str_split(string_print))
-            get_data = get_csvfile(name)
+            get_data = str_to_list_data(get_txtfile(name=name,split=";"),split="\n")
             data_phonebook = get_data
 
         elif selected_number == 5:
@@ -226,4 +224,4 @@ def run_controller_08(mode_num, data_phonebook): # 8 - экспорт справ
             return data_phonebook, selected_number
 
 def run_controller_09(mode_num, data_phonebook): # 9 - выход из программы
-    print("1 - ")
+    pass
