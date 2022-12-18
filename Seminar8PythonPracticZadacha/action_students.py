@@ -22,17 +22,70 @@ def show_student_list(user_id):
 def add_grades_to_student(user_id):
     print("ADDDDDDDDDDDDDDDDDDD")
 
-def select_student(user_id,find_value,parameter=0):
+def select_student(user_id,find_value,parameter=0,mode_search=0):
     print()
     database = strf.get_txtfile(user_id=user_id,show=False)
-    for id in database:
+    for id in database[1:]:
+        is_value_int = type(find_value) == int
+        is_value_list = type(find_value) == list
+
+
         try:
-            is_value_int = type(find_value) == int
-            if ((int(id[0]) == find_value) if is_value_int else (int(id[0]) in list(find_value))) and parameter==0:
-                print(id[0],"	".join(id[4:6]),sep="	",end="	")
-                try:
-                    print(id[7],sep="	", end="	")
-                except IndexError: pass
-                print()
-        except ValueError: pass
-    print()
+            is_if_0 = (int(id[parameter]) == find_value) if is_value_int else (int(id[parameter]) in list(find_value))
+        except ValueError:
+            is_if_0 = False
+
+        try:
+            is_if_1 = (str(id[parameter]) in list(find_value)) if is_value_list else (str(id[parameter]) == "".join(find_value))
+        except ValueError:
+            is_if_1 = False
+
+        try:
+            is_if_2 = (str(id[parameter]) in list(find_value)) if is_value_list else (str(id[parameter]) == "".join(find_value))
+        except ValueError:
+            is_if_2 = False
+
+        try:
+            is_if_3_find1 = find_value.replace(";",",").split(",")[0]
+            is_if_3_1 = str(id[4]) == is_if_3_find1
+        except ValueError:
+            is_if_3_1 = False
+
+        try:
+            is_if_3_find2 = find_value.replace(";", ",").split(",")[1]
+            is_if_3_2 = str(id[5]) == is_if_3_find2
+        except ValueError:
+            is_if_3_2 = False
+
+        if is_if_0 and mode_search == 0:
+            print(id[0],"	".join(id[4:6]),sep="	",end="	")
+            try:
+                print(id[7],sep="	", end="	")
+            except IndexError:
+                pass
+            print()
+
+        elif is_if_1 and mode_search == 1:
+            print(id[0], "	".join(id[4:6]), sep="	", end="	")
+            try:
+                print(id[7], sep="	", end="	")
+            except IndexError:
+                pass
+            print()
+
+        elif is_if_2 and mode_search == 2:
+            print(id[0], "	".join(id[4:6]), sep="	", end="	")
+            try:
+                print(id[7], sep="	", end="	")
+            except IndexError:
+                pass
+            print()
+
+        elif is_if_3_1 and is_if_3_2 and mode_search == 3:
+            print(id[0], "	".join(id[4:6]), sep="	", end="	")
+            try:
+                print(id[7], sep="	", end="	")
+            except IndexError:
+                pass
+            print()
+
