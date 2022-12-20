@@ -1,1 +1,18 @@
-id_user;access_level;login;password;sec_name;fir_name0;0;admin;admin;Р“Р°РіР°СЂРёРЅ;Р®СЂРёР№1;1;login;password;РљР»РµС‰РµРІР°;Р’Р°Р»РµРЅС‚РёРЅР°2;2;ticitaci;beatiful03;РџР»РѕС‚РєРёРЅР°;РђРЅРЅР°3;2;student;whatpassword;РљСѓРІС€РёРЅРѕРІ;Р Р°С€РёС‚4;2;1;1;Р‘РµР·СѓСЃ;Р СЌРј5;2;newxs;43097820zlf211j79t3;РљСѓСЂРёРєРѕРІ;РђРІРіСѓСЃС‚РёРЅ6;2;towery;2g45bn568yn35p68ui8;Р›РµСЃРЅРµРІСЃРєР°СЏ;РќР°С‚Р»СЊСЏ7;1;parasiticide;924qc31453087w7974n;РЎСѓСЂРёРјС‚Рѕ;Р’РёРєС‚РѕСЂРёСЏ8;2;carmancarmarthen;as1989072j113a57q8h;Р‘СѓС€Р»Р°РЅРѕРІ;Р›РѕР»Р°9;2;oilla;4j741192f1187879954;Р‘Р°Р»СЋРЅРѕРІР°;РЇРјРёР»СЏ10;2;recrimination;620975m59l45e6rk74s;РЁРµСЂС€РёРєРѕРІР°;Р—РёРЅРЅСѓСЂ11;2;shyoko;wo448335p4956q7vdc0;Р©СѓСЂ;РСЃР°Р№12;2;timikatiming;48m560t506cg6z54pyo;РЎСѓРґРёР»РѕРІСЃРєР°СЏ;РђСЂСѓС‚СЋРЅ13;2;mississippian;8mq55531g475o87031n;РЎС‚Р°Р±СЂРѕРЅРёРє;Р—Р°СЂРёРјР°14;2;paroicous;2197477c42g65qos506;РќР°СЂС‹РєРѕРІР°;Р“Р°Р»РёРјР°
+id_user;access_level;login;password;sec_name;fir_name
+0;0;admin;admin;Гагарин;Юрий
+1;1;login;password;Клещева;Валентина
+2;2;ticitaci;beatiful03;Плоткина;Анна
+3;2;student;whatpassword;Кувшинов;Рашит
+4;2;1;1;Безус;Рэм
+5;2;newxs;43097820zlf211j79t3;Куриков;Августин
+6;2;towery;2g45bn568yn35p68ui8;Лесневская;Натлья
+7;1;parasiticide;924qc31453087w7974n;Суримто;Виктория
+8;2;carmancarmarthen;as1989072j113a57q8h;Бушланов;Лола
+9;2;oilla;4j741192f1187879954;Балюнова;Ямиля
+10;2;recrimination;620975m59l45e6rk74s;Шершикова;Зиннур
+11;2;shyoko;wo448335p4956q7vdc0;Щур;Исай
+12;2;timikatiming;48m560t506cg6z54pyo;Судиловская;Арутюн
+13;2;mississippian;8mq55531g475o87031n;Стаброник;Зарима
+14;2;paroicous;2197477c42g65qos506;Нарыкова;Галима
+15;2;15_2;15_2;;
+16;2;15_2;16_2;;

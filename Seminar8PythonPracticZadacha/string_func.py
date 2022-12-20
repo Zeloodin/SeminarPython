@@ -61,13 +61,24 @@ def get_txtfile_lenghtrow(name = "data_base_school_users.txt",split='\n',splitro
 
 
 def save_txtfile(data,name = "data_base_school_users.txt",split='\n',sep =";",end='\n', show = False, show_sep="  ||  ", show_end='\n'):
+    print(data)
     try:
 
-        with open(name, "w", encoding = 'windows-1251') as f:
+        with open(name, "w", encoding = 'utf-8') as f:
             f.write("")
         with open(name, "a+", encoding = 'windows-1251') as f:
             for i in range(len(data)):
-                f.write(str(";".join(data[i])))
+
+                for j in range(len(data[i])):
+                    if type(data[i][j]) not in [dict,list]:
+                        data[i][j] = str(data[i][j])
+
+                try:
+
+                    f.write(str(";".join(data[i])))
+                except TypeError:
+                    continue
+                f.write("\n")
 
 
     except FileNotFoundError:
