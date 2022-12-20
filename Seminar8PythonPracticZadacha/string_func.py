@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+
 import core
 
 def read_list(list1,sep=" ", end=" ", show = True, get = False):
@@ -42,6 +43,38 @@ def list_to_str_data(data, sep =";", end='\n'):
             string_text = string_text + data[i][j] + sep
     return string_text
 
+def get_txtfile_lenghtrow(name = "data_base_school_users.txt",split='\n',splitrow=';'):
+    try:
+        try:
+            with open(name, "r", encoding='windows-1251') as f:
+                open_txt = (f.read()).split(split)
+                open_txt = open_txt[0].split(splitrow)
+        except UnicodeDecodeError:
+            with open(name, "r", encoding='utf-8') as f:
+                open_txt = (f.read()).split(split)
+                open_txt = open_txt[0].split(splitrow)
+        lenght_0pen_txt = len(open_txt)
+        return lenght_0pen_txt
+    except FileNotFoundError:
+        print(f"Отсутствует файл {name}")
+
+
+
+def save_txtfile(data,name = "data_base_school_users.txt",split='\n',sep =";",end='\n', show = False, show_sep="  ||  ", show_end='\n'):
+    try:
+
+        with open(name, "w", encoding = 'windows-1251') as f:
+            f.write("")
+        with open(name, "a+", encoding = 'windows-1251') as f:
+            for i in range(len(data)):
+                f.write(str(";".join(data[i])))
+
+
+    except FileNotFoundError:
+        print(f"Отсутствует файл {name}")
+
+
+
 def get_txtfile(name = "data_base_school_users.txt",split='\n',sep =";",end='\n', show = False, show_sep="  ||  ", show_end='\n', user_id=None):
     try:
         try:
@@ -61,20 +94,23 @@ def get_txtfile(name = "data_base_school_users.txt",split='\n',sep =";",end='\n'
                     pass
                 else:
                     level_show = lambda x=int(open_txt[j][1]): ["Администратор", "Учитель", "Ученик", "Гость", "Никто"][x]
-                    match core.all_get_user(user_id, 0, 1):
-                        case 0: # Администратор
-                            print("	".join(open_txt[j][0:1]), level_show(), "	".join(open_txt[j][1:]), sep="	")
-                        case 1: # Учитель
-                            if int(open_txt[j][1]) in [2, 1, 0]:
-                                print("	".join(open_txt[j][0:1]),level_show(), "	".join(open_txt[j][4:6]), sep="	")
-                        case 2: # Ученик
-                            if int(open_txt[j][1]) in [2, 1]:
-                                print(level_show(),"	".join(open_txt[j][4:6]),sep="	")
-                        case 3: # Гость
-                            if int(open_txt[j][1]) in [3, 4]:
-                                print(level_show(),"	".join(open_txt[j][5:6]),sep="	")
-                        case _:
-                            pass
+                    if user_id != None:
+                        match core.all_get_user(user_id, 0, 1):
+                            case 0: # Администратор
+                                print("	".join(open_txt[j][0:1]), level_show(), "	".join(open_txt[j][1:]), sep="	")
+                            case 1: # Учитель
+                                if int(open_txt[j][1]) in [2, 1, 0]:
+                                    print("	".join(open_txt[j][0:1]),level_show(), "	".join(open_txt[j][4:6]), sep="	")
+                            case 2: # Ученик
+                                if int(open_txt[j][1]) in [2, 1]:
+                                    print(level_show(),"	".join(open_txt[j][4:6]),sep="	")
+                            case 3: # Гость
+                                if int(open_txt[j][1]) in [3, 4]:
+                                    print(level_show(),"	".join(open_txt[j][5:6]),sep="	")
+                            case _:
+                                pass
+                    else:
+                        print(level_show(),"	".join(open_txt[j][4:6]),sep="	")
 
 
 

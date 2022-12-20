@@ -42,19 +42,19 @@ def select_student(user_id,find_value,parameter=0,mode_search=0):
 
         try:
             is_if_2 = (str(id[parameter]) in list(find_value)) if is_value_list else (str(id[parameter]) == "".join(find_value))
-        except ValueError:
+        except (ValueError, AttributeError, IndexError):
             is_if_2 = False
 
         try:
             is_if_3_find1 = find_value.replace(";",",").split(",")[0]
             is_if_3_1 = str(id[4]) == is_if_3_find1
-        except ValueError:
+        except (ValueError, AttributeError, IndexError):
             is_if_3_1 = False
 
         try:
             is_if_3_find2 = find_value.replace(";", ",").split(",")[1]
             is_if_3_2 = str(id[5]) == is_if_3_find2
-        except ValueError:
+        except (ValueError, AttributeError, IndexError):
             is_if_3_2 = False
 
         if is_if_0 and mode_search == 0:
@@ -88,4 +88,51 @@ def select_student(user_id,find_value,parameter=0,mode_search=0):
             except IndexError:
                 pass
             print()
+
+
+def append_student(user_id,student_list):
+    database = strf.get_txtfile(show=False)
+    database.append(student_list)
+    print(database)
+    strf.save_txtfile(database)
+    pass
+
+def delete_student(user_id):
+    pass
+
+
+def edit_student(user_id):
+    pass
+
+
+def add_student_fir_name(user_id, fir_name, student_list, index = 5):
+    student_list[index] = fir_name
+    return student_list
+
+def add_student_sec_name(user_id, sec_name, student_list, index = 4):
+    student_list[index] = sec_name
+    return student_list
+
+def add_student_access_level(user_id, student_list, access_level = 2, index = 1):
+    student_list[index] = int(access_level)
+    return student_list
+
+def add_student_login(user_id, student_list, login = "", index = 2):
+    for id in strf.get_txtfile():
+        if str(id)[index] == str(login):
+            print(f"Этот логин: {login}, существует. Пожалуйста напишите другой логин.")
+            return student_list
+
+    student_list[index] = str(f"{student_list[0]}_{student_list[1]}") if login == "" else str(login)
+    return student_list
+
+def add_student_password(user_id, student_list, password = "", index = 3):
+    student_list[index] = (f"{student_list[0]}_{student_list[1]}") if password == "" else password
+    return student_list
+
+def add_student_id_user(user_id, student_list, index = 0):
+    data = strf.get_txtfile()[-1]
+    student_list[index] = int(data[0])+1
+    return student_list
+
 
