@@ -1,5 +1,84 @@
-# Знакомство с языком Python (семинары)
-# Урок 9. Возможна ли жизнь без PIP?
-# 1) Напишите Бота, удаляющего из текста все слова, содержащие "абв". (Ввод от пользователя)
-# 2) Создайте Бота для игры с конфетами человек против бота. (Дополнительно)
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
+# Р—РЅР°РєРѕРјСЃС‚РІРѕ СЃ СЏР·С‹РєРѕРј Python (СЃРµРјРёРЅР°СЂС‹)
+# РЈСЂРѕРє 9. Р’РѕР·РјРѕР¶РЅР° Р»Рё Р¶РёР·РЅСЊ Р±РµР· PIP?
+# 1) РќР°РїРёС€РёС‚Рµ Р‘РѕС‚Р°, СѓРґР°Р»СЏСЋС‰РµРіРѕ РёР· С‚РµРєСЃС‚Р° РІСЃРµ СЃР»РѕРІР°, СЃРѕРґРµСЂР¶Р°С‰РёРµ "Р°Р±РІ". (Р’РІРѕРґ РѕС‚ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ)
+# 2) РЎРѕР·РґР°Р№С‚Рµ Р‘РѕС‚Р° РґР»СЏ РёРіСЂС‹ СЃ РєРѕРЅС„РµС‚Р°РјРё С‡РµР»РѕРІРµРє РїСЂРѕС‚РёРІ Р±РѕС‚Р°. (Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕ)
+
+import time, datetime as dt
+import filter_func as filtf
+from telegram import Bot
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, ConversationHandler
+
+A = 0
+B = 1
+
+me_token = ""
+
+bot = Bot(token=me_token)
+updater = Updater(token=me_token)
+dispatcher = updater.dispatcher
+
+def run(update, context):
+    context.bot.send_message(update.effective_chat.id,"Hello\n/help /run /filter_text")
+    print("Hello\n/help /run /filter_text")
+
+def filter_text(update, context):
+    context.bot.send_message(update.effective_chat.id, "Р’РІРµРґРёС‚Рµ С‚РµРєСЃС‚, Рё РѕС‡РёСЃС‚РёС‚ РІСЃРµ СЃР»РѕРІР° СЃРѕРґРµСЂР¶Р°С‰РёРµ Р°Р±РІ")
+    print("Р’РІРµРґРёС‚Рµ С‚РµРєСЃС‚, Рё РѕС‡РёСЃС‚РёС‚ РІСЃРµ СЃР»РѕРІР° СЃРѕРґРµСЂР¶Р°С‰РёРµ Р°Р±РІ")
+    return A
+
+def filter2_text(update, context):
+    text = update.message.text
+    clear_text = filtf.filter_text(text)
+    context.bot.send_message(update.effective_chat.id, f"Р¤РёР»СЊС‚СЂР°С†РёСЏ Р·Р°РІРµСЂС€РµРЅР°\n{clear_text}")
+    print(f"{clear_text}\nР¤РёР»СЊС‚СЂР°С†РёСЏ Р·Р°РІРµСЂС€РµРЅР°")
+    return ConversationHandler.END
+
+
+def help(update, context):
+    context.bot.send_message(update.effective_chat.id, "/help /run /filter_text")
+    print("/help /run /filter_text")
+
+
+def func(update, context): # 13.15
+    text = update.message.text
+    id = update.message.from_user.id
+    username = update.message.from_user.username
+    first_name = update.message.from_user.first_name
+    last_name = update.message.from_user.last_name
+    is_bot =  update.message.from_user.is_bot
+
+    f = open("log.txt",'a+')
+    f.write(f"{dt.datetime.now()}	{id}	{username}	{first_name}	{last_name}	{is_bot}\n{text}\n")
+    f.close()
+
+message_handler = MessageHandler(Filters.all, func)
+filter_handled = CommandHandler("filter_text", filter_text)
+# filter2_handled = CommandHandler("filter_text2", filter2_text)
+start_handled = CommandHandler("run", run)
+help_handler = CommandHandler("help",help)
+
+
+
+conv_handler = ConversationHandler(entry_points=[start_handled],
+                                   states={A: [filter2_text]})
+
+# РїРѕРґРєР»СЋС‡Р°РµС‚ Рє Р±РѕС‚Сѓ.
+dispatcher.add_handler(start_handled)
+dispatcher.add_handler(help_handler)
+dispatcher.add_handler(filter_handled)
+dispatcher.add_handler(message_handler)
+
+updater.start_polling()
+updater.idle()
+
+
+
+
+
+
+# if __name__ == '__main__':
+#     print("Р—Р°РїСѓСЃРє Р±РѕС‚Р°")
+#     filter.run()
