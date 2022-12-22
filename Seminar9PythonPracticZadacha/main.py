@@ -11,38 +11,30 @@ import filter_func as filtf
 from telegram import Bot
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, ConversationHandler
 
-A = 0
-B = 1
-
-me_token = ""
+me_token = "5833295241:AAH2JQWPBuLpox3-WdaXSSpx96vpMCvzLYU"
 
 bot = Bot(token=me_token)
 updater = Updater(token=me_token)
 dispatcher = updater.dispatcher
 
 def run(update, context):
-    context.bot.send_message(update.effective_chat.id,"Hello\n/help /run /filter_text")
-    print("Hello\n/help /run /filter_text")
+    print("command: run")
+    context.bot.send_message(update.effective_chat.id,"Hello\n/help /filter /filter_text")
+    print("Hello\n/help /filter /filter_text")
 
 def filter_text(update, context):
-    context.bot.send_message(update.effective_chat.id, "Введите текст, и очистит все слова содержащие абв")
-    print("Введите текст, и очистит все слова содержащие абв")
-    return A
-
-def filter2_text(update, context):
+    print("command: filter")
     text = update.message.text
-    clear_text = filtf.filter_text(text)
-    context.bot.send_message(update.effective_chat.id, f"Фильтрация завершена\n{clear_text}")
-    print(f"{clear_text}\nФильтрация завершена")
-    return ConversationHandler.END
-
+    clear_text = filtf.filter(text)
+    context.bot.send_message(update.effective_chat.id, clear_text)
 
 def help(update, context):
-    context.bot.send_message(update.effective_chat.id, "/help /run /filter_text")
-    print("/help /run /filter_text")
+    print("command: help")
+    context.bot.send_message(update.effective_chat.id, "/help /filter /filter_text")
+    print("/help /filter /filter_text")
 
 
-def func(update, context): # 13.15
+def func(update, context):
     text = update.message.text
     id = update.message.from_user.id
     username = update.message.from_user.username
@@ -54,22 +46,20 @@ def func(update, context): # 13.15
     f.write(f"{dt.datetime.now()}	{id}	{username}	{first_name}	{last_name}	{is_bot}\n{text}\n")
     f.close()
 
-message_handler = MessageHandler(Filters.all, func)
+run_handled = CommandHandler("run", run)
+start_handled = CommandHandler("start", run) # иногда работает и или с задержкой.
 filter_handled = CommandHandler("filter_text", filter_text)
-# filter2_handled = CommandHandler("filter_text2", filter2_text)
-start_handled = CommandHandler("run", run)
-help_handler = CommandHandler("help",help)
+filter2_handled = CommandHandler("filter", filter_text) # иногда работает и или с задержкой.
+help_handled = CommandHandler("help", help)
+message_handler = MessageHandler(Filters.all, func)
 
 
-
-conv_handler = ConversationHandler(entry_points=[start_handled],
-                                   states={A: [filter2_text]})
-
-# подключает к боту.
-dispatcher.add_handler(start_handled)
-dispatcher.add_handler(help_handler)
-dispatcher.add_handler(filter_handled)
 dispatcher.add_handler(message_handler)
+dispatcher.add_handler(help_handled)
+dispatcher.add_handler(filter_handled)
+dispatcher.add_handler(filter2_handled)
+dispatcher.add_handler(start_handled)
+dispatcher.add_handler(run_handled)
 
 updater.start_polling()
 updater.idle()
