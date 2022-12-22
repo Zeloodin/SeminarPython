@@ -6,12 +6,12 @@ def filter(text):
     split_text = str(text).split()
     print(split_text)
     try:
-        for i in range(len(split_text)[1:]-1):
+        for i in range(len(split_text)-1):
             if filt in split_text[i]:
                 split_text.pop(i)
     except IndexError:
         pass
 
-    text = " ".join(split_text)
+    text = " ".join(split_text[1:])
     print(text)
     return text

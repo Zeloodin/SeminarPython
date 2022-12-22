@@ -54,12 +54,13 @@ help_handled = CommandHandler("help", help)
 message_handler = MessageHandler(Filters.all, func)
 
 
-dispatcher.add_handler(message_handler)
+
 dispatcher.add_handler(help_handled)
 dispatcher.add_handler(filter_handled)
 dispatcher.add_handler(filter2_handled)
 dispatcher.add_handler(start_handled)
 dispatcher.add_handler(run_handled)
+dispatcher.add_handler(message_handler)
 
 updater.start_polling()
 updater.idle()
