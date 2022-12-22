@@ -6,7 +6,7 @@ def filter(text):
     split_text = str(text).split()
     print(split_text)
     try:
-        for i in range(len(split_text)-1):
+        for i in range(len(split_text)):
             if filt in split_text[i]:
                 split_text.pop(i)
     except IndexError:
