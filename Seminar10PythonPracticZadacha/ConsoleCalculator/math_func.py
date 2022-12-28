@@ -22,12 +22,6 @@ def is_num_int(n):
             return False
     return True
 
-def str_to_num(indx):
-    print("ssssssssssssss")
-
-
-
-
 sqrt = lambda n,p=2:n ** (1/p)
 pow = lambda n,p=2: n ** p
 mod = lambda n,p: n % p

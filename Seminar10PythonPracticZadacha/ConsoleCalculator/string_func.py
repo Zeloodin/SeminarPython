@@ -52,21 +52,21 @@ def split_string_to_math(text):
 def check_math_rules(text):
     symbols = "+-*/^:."
     brackets = "("
-    symbol = 0
+    n = 0
     check_count_brackets = count_brackets(text)
     if not check_count_brackets[2]:
         print(f"Колличество открытых и закрытых скобок. (:{check_count_brackets[0]}, ):{check_count_brackets[1]}")
         return False
 
-    for i in range(len(text)-1):
+    for i in range(len(text)):
         if (text[i-1] in brackets and text[i] in symbols) and text[i] != "-":
             return False
         elif (text[0] in symbols or text[-1] in symbols) and text[0] != "-" :
             return False
-        elif text[symbol] != text[i] and text[i] in symbols:
-            symbol = i
-        elif text[symbol] == text[i] and text[i] in symbols and symbol != i and abs(i - symbol) == 1:
+        elif text[n] == text[i] and text[i] in symbols and n != i and abs(i - n) == 1:
             return False
+        elif text[i] in symbols:
+            n = i
     return True
 
 def count_brackets(text):
@@ -82,7 +82,8 @@ def count_brackets(text):
     else:
         return [left_brackets, right_brackets, False, True]
 
-def simplify_text_for_math(split_text):
+def simplify_text_for_math(splt_text):
+    split_text = splt_text
 
     symbols = "+-*/^()"
     # symbols = "+-*/^:."
@@ -91,23 +92,26 @@ def simplify_text_for_math(split_text):
     minus = "-"
     i = 0
     i_init = 0
-    while(i < len(split_text)-1):
-        if math_func.is_num(split_text[i]):
-            split_text[i] = float(split_text[i])
-            if i - 2 >= 0:
-                if str(split_text[i-1]) in minus:
-                    if str(split_text[i-2]) in brackets:
+    while(i < len(split_text)):
+        if i >= 0:
+            if math_func.is_num(split_text[i]):
+                split_text[i] = float(split_text[i])
+                if i - 2 >= 0:
+                    if str(split_text[i-1]) in minus:
+                        if str(split_text[i-2]) in brackets:
+                            split_text[i] = split_text[i] * -1
+                            split_text.pop(i-1)
+                            i -= 1
+                elif i >= 0:
+                    if str(split_text[i - 1]) in minus:
                         split_text[i] = split_text[i] * -1
-                        split_text.pop(i-1)
+                        split_text.pop(i - 1)
                         i -= 1
+                i += 1
             else:
-                if str(split_text[i - 1]) in minus:
-                    split_text[i] = split_text[i] * -1
-                    split_text.pop(i - 1)
-                    i -= 1
-            i += 1
-        else:
-            i += 1
+                i += 1
+
+    return split_text
 
 
 
