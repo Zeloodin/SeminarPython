@@ -5,9 +5,7 @@ def is_num(n):
     is_num_real = list("0123456789.")
     for i in list(str(n)):
         if not i in is_num_real:
-            print(i,n,False)
             return False
-    print(n,True)
     return True
 
 def is_num_real(n):

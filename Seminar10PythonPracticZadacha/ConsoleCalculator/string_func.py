@@ -90,19 +90,24 @@ def simplify_text_for_math(split_text):
     brackets = "("
     minus = "-"
     i = 0
-    print(split_text)
+    i_init = 0
     while(i < len(split_text)-1):
         if math_func.is_num(split_text[i]):
-            if type(split_text[i]) in [int,float]: i += 1
-            print(split_text[i-1:i+1],split_text[i],math_func.is_num(split_text[i]),i)
             split_text[i] = float(split_text[i])
-            if str(split_text[i-1]) == minus and not (str(split_text[i-2]) in nums or math_func.is_num(split_text[i-2]) or str(split_text[i-2]) in brackets):
-                split_text[i] = -split_text[i]
-                split_text.pop(i-1)
-                print(split_text[i-1],split_text[i-2])
+            if i - 2 >= 0:
+                if str(split_text[i-1]) in minus:
+                    if str(split_text[i-2]) in brackets:
+                        split_text[i] = split_text[i] * -1
+                        split_text.pop(i-1)
+                        i -= 1
+            else:
+                if str(split_text[i - 1]) in minus:
+                    split_text[i] = split_text[i] * -1
+                    split_text.pop(i - 1)
+                    i -= 1
+            i += 1
         else:
             i += 1
-        # print(f"{split_text[:i]}  ||__type:__ {type(split_text[i])} value:__ {split_text[i]} __||  {split_text[i + 1:]},{i},{len(split_text)},{split_text[i]}")
 
 
 
