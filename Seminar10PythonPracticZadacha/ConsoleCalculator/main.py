@@ -11,6 +11,7 @@ import calc_core_06 as care
 
 
 if __name__ == '__main__':
-    text = "3×4^2+8−(15)^2÷3"
+    text = "3*4^2+8-(15)^2/3"
     text_math = mathexf.text_to_rule_math(text)
-    print(text_math)
+    calc_result = care.CalcRun(text)
+    print(text_math,calc_result)

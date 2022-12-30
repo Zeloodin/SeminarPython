@@ -226,5 +226,3 @@ def CalcRun(inputStr = None,splitString = None):
 
 
 
-
-
