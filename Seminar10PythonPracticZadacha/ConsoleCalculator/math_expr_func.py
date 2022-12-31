@@ -23,7 +23,9 @@ def text_to_rule_math(text):
         return res2
     else:
         print(f"Не может обрабатываться: {text}")
-        return []
+        res = strf.split_string_to_math(text)
+        res2 = strf.simplify_text_for_math(res)
+        return res2
 
 
 if __name__ == '__main__':

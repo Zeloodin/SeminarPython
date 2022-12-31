@@ -8,9 +8,15 @@ def split_string_to_math(text):
     nums = "0123456789"
     point = "."
     text = text.replace(" ","")
-    for i in range(len(text)-1,0,-1):
+    for i in range(len(text),0,-1):
         try:
-            if (text[i-1] in nums and text[i] == "." and text[i+1] in nums):
+            if text[i] in nums and text[i+1] == ")":
+                text = text[:i] + " " + text[i] + " " + text[i + 1:]
+            elif text[i] in nums and text[i-1] == "(" and i - 1 >= 0:
+                text = text[:i] + " " + text[i:]
+
+
+            elif (text[i-1] in nums and text[i] == "." and text[i+1] in nums):
                 text = text[:i - 1] + " " + text[i-1:i+2] + " " + text[i + 2:]
 
             elif (text[i] in nums and text[i+1] == "." and text[i+2] in nums):
@@ -40,6 +46,7 @@ def split_string_to_math(text):
                 text = text[:i] + " " + text[i] + " " + text[i + 1:]
 
         except IndexError: pass
+
     split_text = text.split(" ")
     try:
         for i in range(len(split_text)-1,0,-1):
@@ -102,11 +109,13 @@ def simplify_text_for_math(splt_text):
                             split_text[i] = split_text[i] * -1
                             split_text.pop(i-1)
                             i -= 1
+
                 elif i >= 0:
                     if str(split_text[i - 1]) in minus:
                         split_text[i] = split_text[i] * -1
                         split_text.pop(i - 1)
                         i -= 1
+
                 i += 1
             else:
                 i += 1
