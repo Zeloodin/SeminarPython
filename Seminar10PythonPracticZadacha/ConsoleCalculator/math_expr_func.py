@@ -15,6 +15,11 @@ import string_func as strf
 # Multiplication/Division: 48+8−75
 # Addition/Subtraction: −19
 
+# Parentheses: 3*4^2+8-(15)^2/3
+# Exponents: 3*16+8-225/3
+# Multiplication/Division: 48+8-75
+# Addition/Subtraction: -19
+
 def text_to_rule_math(text):
     text = text.replace("×","*").replace("÷","/").replace(":","/").replace("−","-")
     if strf.check_math_rules(text):
@@ -23,9 +28,9 @@ def text_to_rule_math(text):
         return res2
     else:
         print(f"Не может обрабатываться: {text}")
-        res = strf.split_string_to_math(text)
-        res2 = strf.simplify_text_for_math(res)
-        return res2
+        # res = strf.split_string_to_math(text)
+        # res2 = strf.simplify_text_for_math(res)
+        # return res2
 
 
 if __name__ == '__main__':

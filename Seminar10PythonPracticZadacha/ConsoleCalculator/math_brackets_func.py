@@ -9,6 +9,7 @@ import calc_core_06 as care
 
 def check_count_matching_brackets(text_math,is_check = False):
     global brackets_present
+    if text_math == None: return None
     len_text = len(text_math)
     bracket_open = "("
     bracket_close = ")"
@@ -50,12 +51,14 @@ def check_count_matching_brackets(text_math,is_check = False):
     return [is_brackets_present,matching_brackets,brackets_present[0],brackets_present[1]]
 
 def count_level_brackets(text_math):
+    if text_math == None: return None
     brackets = list("()")
     bracket_open = "("
     bracket_close = ")"
     len_text = len(text_math)
     i_brackets_level = 0
     max_brackets_level = 0
+    min_brackets_level = 0
     count_brackets_open = 0
     count_brackets_close = 0
 
@@ -70,4 +73,12 @@ def count_level_brackets(text_math):
                 i_brackets_level -= 1
                 count_brackets_close += 1
 
-    return [max_brackets_level,count_brackets_open+count_brackets_close,count_brackets_open,count_brackets_close,count_brackets_close-count_brackets_open]
+            if i_brackets_level < 0:
+                min_brackets_level += 1
+
+    if min_brackets_level > 0:
+        print("Ошибка. В тексте закрытые скобки находятся первее чем открытые скобки.\nПример: )2-6(*2\n)3-2(-1\n")
+
+
+
+    return [max_brackets_level,min_brackets_level,count_brackets_open+count_brackets_close,count_brackets_open,count_brackets_close,count_brackets_close-count_brackets_open]
