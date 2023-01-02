@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import math_func as mathf
 import string_func as strf
 
 # The order of operations

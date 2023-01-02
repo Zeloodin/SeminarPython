@@ -4,7 +4,6 @@
 import math_func as mathf
 import string_func as strf
 import math_expr_func as mathexf
-import calc_core_06 as care
 import math_brackets_func as mathbraf
 
 # The order of operations
@@ -16,9 +15,6 @@ import math_brackets_func as mathbraf
 # Exponents: 3*16+8-225/3
 # Multiplication/Division: 48+8-75
 # Addition/Subtraction: -19
-
-
-
 
 
 def op_math_to_text(text_math):
@@ -34,10 +30,7 @@ def op_math_to_text(text_math):
                     result.pop(ni)
                     result[ni - 1] = bracket_string_result
                 ni += 1
-
     return result
-
-
 
 def op_in_brackets(text_math):
     max_brackets_level = mathbraf.count_level_brackets(text_math)[0]

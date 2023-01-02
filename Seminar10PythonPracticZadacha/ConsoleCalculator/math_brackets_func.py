@@ -1,12 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import math_func as mathf
-import string_func as strf
-import math_expr_func as mathexf
-import calc_core_06 as care
-
-
 def check_count_matching_brackets(text_math,is_check = False):
     global brackets_present
     if text_math == None: return None
@@ -78,7 +72,5 @@ def count_level_brackets(text_math):
 
     if min_brackets_level > 0:
         print("Ошибка. В тексте закрытые скобки находятся первее чем открытые скобки.\nПример: )2-6(*2\n)3-2(-1\n")
-
-
 
     return [max_brackets_level,min_brackets_level,count_brackets_open+count_brackets_close,count_brackets_open,count_brackets_close,count_brackets_close-count_brackets_open]
